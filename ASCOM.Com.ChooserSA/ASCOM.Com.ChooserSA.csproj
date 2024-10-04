@@ -1,5 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
+    <TargetFramework>net6.0-windows10.0.26100.0</TargetFramework>
 		<AssemblyTitle>ASCOM Stand Alone Chooser</AssemblyTitle>
 		<Authors>Peter Simpson</Authors>
 		<Company>ASCOM Initiative</Company>
@@ -9,7 +10,6 @@
 		<LangVersion>latest</LangVersion>
 		<RootNamespace>ASCOM.Com</RootNamespace>
 		<AssemblyName>ASCOM.Com.ChooserSA</AssemblyName>
-		<TargetFrameworks>net472;net48;net6.0-windows;net7.0-windows;net8.0-windows</TargetFrameworks>
 		<UseWindowsForms>true</UseWindowsForms>
 		<SignAssembly>True</SignAssembly>
 		<PublishUrl>publish\</PublishUrl>
@@ -26,12 +26,12 @@
 		<PackageIcon>ASCOMBoarderless.png</PackageIcon>
 		<PackageTags>ascom;alpaca;com;chooser</PackageTags>
 		<GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
+		<Platforms>AnyCPU;x64</Platforms>
 	</PropertyGroup>
 	<ItemGroup>
 	  <Content Include="..\ASCOMBoarderless.png" Link="ASCOMBoarderless.png" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="ASCOM.Exception.Library" Version="7.0.0" />
 		<PackageReference Include="System.Resources.Extensions" Version="8.0.0" />
 	</ItemGroup>
 	<ItemGroup>

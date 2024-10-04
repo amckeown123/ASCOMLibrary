@@ -1,46 +1,51 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
-	<PropertyGroup>
-		<TargetFramework>netstandard2.0</TargetFramework>
-		<RootNamespace>ASCOM.Common</RootNamespace>
-		<SignAssembly>true</SignAssembly>
-		<AssemblyOriginatorKeyFile>..\ASCOM.snk</AssemblyOriginatorKeyFile>
-		<Copyright>ASCOM Initiative (c) 2022</Copyright>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<Product>ASCOM NetStandard types</Product>
-		<Description>A .Net Standard library providing common Interfaces, enums and other types for ASCOM projects.
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>ASCOM.Common</RootNamespace>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\ASCOM.snk</AssemblyOriginatorKeyFile>
+    <Copyright>ASCOM Initiative (c) 2022</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Product>ASCOM NetStandard types</Product>
+    <Description>A .Net Standard library providing common Interfaces, enums and other types for ASCOM projects.
 
 Includes support for the interface updates introduced in ASCOM Platform 7.</Description>
-		<Authors>Daniel Van Noord and Peter Simpson</Authors>
-		<PackageProjectUrl>https://ascom-standards.org/</PackageProjectUrl>
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<PackageId>ASCOM.Common.Components</PackageId>
-		<PackageIcon>ASCOMBoarderless.png</PackageIcon>
-		<Configurations>Debug;Release</Configurations>
-		<PackageReadmeFile>README.md</PackageReadmeFile>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<DebugType>embedded</DebugType>
-		<Optimize>False</Optimize>
-	</PropertyGroup>
-
-	<PropertyGroup>
-		<GenerateDocumentationFile>true</GenerateDocumentationFile>
-		<NoWarn>$(NoWarn);1591</NoWarn>
-	</PropertyGroup>
-
-	<ItemGroup>
-		<None Include="..\ASCOMBoarderless.png">
-			<Pack>True</Pack>
-			<PackagePath></PackagePath>
-		</None>
-		<None Include="README.md" Pack="true" PackagePath="\" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<PackageReference Include="ASCOM.Exception.Library" Version="7.0.0" />
-		<PackageReference Include="System.Text.Json" Version="8.0.4" />
-	</ItemGroup>
-
+    <Authors>Daniel Van Noord and Peter Simpson</Authors>
+    <PackageProjectUrl>https://ascom-standards.org/</PackageProjectUrl>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>ASCOM.Common.Components</PackageId>
+    <PackageIcon>ASCOMBoarderless.png</PackageIcon>
+    <Configurations>Debug;Release</Configurations>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <Platforms>AnyCPU;x64</Platforms>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>embedded</DebugType>
+    <Optimize>False</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <DebugType>embedded</DebugType>
+    <Optimize>False</Optimize>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="..\ASCOMBoarderless.png">
+      <Pack>True</Pack>
+      <PackagePath>
+      </PackagePath>
+    </None>
+    <None Include="README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.1.0" />
+    <PackageReference Include="xunit.extensibility.core" Version="2.9.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="ASCOM.Exceptions">
+      <HintPath>..\..\ASCOM.Exceptions\bin\Release\net6.0\ASCOM.Exceptions.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 </Project>

@@ -8,12 +8,12 @@ using ASCOM.Com.DriverAccess;
 using ASCOM.Common.Interfaces;
 using System.Threading;
 using System.Diagnostics;
-using Xunit.Abstractions;
+
 
 namespace ASCOM.Alpaca.Tests.Clients
 {
     [Collection("CommonTests")]
-    public class CommonTests()    //public class CommonTests(ITestOutputHelper output)
+    public class CommonTests    //public class CommonTests(ITestOutputHelper output)
     {
         // private readonly ITestOutputHelper output = output;
 
@@ -91,7 +91,7 @@ namespace ASCOM.Alpaca.Tests.Clients
 
     [Collection("CameraTests")]
     //public class MiscellaneousTests(ITestOutputHelper output)
-    public class MiscellaneousTests()
+    public class MiscellaneousTests
     {
         // private readonly ITestOutputHelper output = output;
 

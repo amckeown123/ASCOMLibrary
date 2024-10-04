@@ -9,9 +9,9 @@ using System.Threading;
 namespace DriverAccess
 {
     [Collection("SwitchTests")]
-    public class SwitchAsyncTests(ITestOutputHelper output)
+    public class SwitchAsyncTests
     {
-        private readonly ITestOutputHelper output = output;
+        private readonly ITestOutputHelper output;
 
         [Fact]
         public void SetSwitch()

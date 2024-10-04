@@ -523,18 +523,20 @@ namespace ASCOM.Alpaca.Discovery
         {
             CancellationTokenRegistration cancellationTokenRegistration;
 
+            // Create a completion source that enables the task to be set to a complete status
+            TaskCompletionSource<object> taskCompletionSource = new TaskCompletionSource<object>();
+
+            // Add an event handler to the cancellation token that will fire when the task is cancelled. When the event fires the handler will set the task result and so end the task
+            cancellationTokenRegistration = cancellationToken.Register(() =>
+            {
+                logger.LogMessage(LogLevel.Debug, $"{methodName}Cancelled", $"{Thread.CurrentThread.ManagedThreadId} Setting task result...");
+                taskCompletionSource.SetResult(null);
+                logger.LogMessage(LogLevel.Debug, $"{methodName}Cancelled", $"{Thread.CurrentThread.ManagedThreadId} Result set");
+            });
+
             try
             {
-                // Create a completion source that enables the task to be set to a complete status
-                TaskCompletionSource<object> taskCompletionSource = new TaskCompletionSource<object>();
 
-                // Add an event handler to the cancellation token that will fire when the task is cancelled. When the event fires the handler will set the task result and so end the task
-                cancellationTokenRegistration = cancellationToken.Register(() =>
-                {
-                    logger.LogMessage(LogLevel.Debug, $"{methodName}Cancelled", $"{Thread.CurrentThread.ManagedThreadId} Setting task result...");
-                    taskCompletionSource.SetResult(null);
-                    logger.LogMessage(LogLevel.Debug, $"{methodName}Cancelled", $"{Thread.CurrentThread.ManagedThreadId} Result set");
-                });
 
                 // Create and run an async task to effect the discovery
                 await Task.Run(async () =>

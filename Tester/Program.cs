@@ -203,17 +203,31 @@ namespace Tester
             LogMessage($"Asteroid Astrometric RA (UTC): {Utilities.HoursToHMS(positionVector.RightAscension, ":", ":", "", 3)}, Declination: {Utilities.DegreesToDMS(positionVector.Declination, ":", ":", "", 3)} ");
         }
 
-        private static double GetParameter(string name, int start, int length, string orbitstring)
+        private static void LogMessage(string v)
         {
-            if (!double.TryParse(orbitstring.AsSpan(start, length), CultureInfo.InvariantCulture, out double parsedValue))
-                throw new Exception($"Unable to parse the {name} value starting at position {start} for {length} characters from {orbitstring}");
-            return parsedValue;
+            throw new NotImplementedException();
         }
 
-        static void LogMessage(string message)
+        private static double GetParameter(string name, int start, int length, string orbitstring)
         {
-            Console.WriteLine(message);
-            logger?.LogMessage("Tester", message);
+         
+
+                if (double.TryParse(orbitstring.AsSpan(start, length), out double result)) {
+                    return result;
+                }
+                else
+                {
+                    LogMessage($"Unable to parse the {name} value starting at position {start} for {length} characters from {orbitstring}");
+                    throw new Exception($"Unable to parse the {name} value starting at position {start} for {length} characters from {orbitstring}");
+
+                }
+            
+
+         static void LogMessage(string message)
+            {
+                Console.WriteLine(message);
+                logger?.LogMessage("Tester", message);
+            }
         }
     }
 }

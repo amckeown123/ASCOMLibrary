@@ -1,54 +1,55 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
-	<PropertyGroup>
-		<OutputType>Library</OutputType>
-		<TargetFramework>netstandard2.0</TargetFramework>
-		<ApplicationIcon />
-		<StartupObject />
-		<RootNamespace>ASCOM.Alpaca</RootNamespace>
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<Authors>Daniel Van Noord and Peter Simpson</Authors>
-		<Company>ASCOM Initiative</Company>
-		<Description>
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <ApplicationIcon />
+    <StartupObject />
+    <RootNamespace>ASCOM.Alpaca</RootNamespace>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Daniel Van Noord and Peter Simpson</Authors>
+    <Company>ASCOM Initiative</Company>
+    <Description>
 			A .Net Standard library providing ASCOM Alpaca client and discovery components.
 
 			Includes support for the interface updates introduced in ASCOM Platform 7.
 		</Description>
-		<Copyright>Copyright ASCOM Initiative 2022</Copyright>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageIcon>ASCOMBoarderless.png</PackageIcon>
-		<PackageReleaseNotes>Initial release supporting all device types except Video and targeting .NET Standard 2.0.</PackageReleaseNotes>
-		<PackageId>ASCOM.Alpaca.Components</PackageId>
-		<RepositoryUrl>https://www.myget.org/F/ascom-initiative/api/v3/index.json</RepositoryUrl>
-		<SignAssembly>true</SignAssembly>
-		<AssemblyOriginatorKeyFile>..\ASCOM.snk</AssemblyOriginatorKeyFile>
-		<DelaySign>false</DelaySign>
-		<Configurations>Debug;Release</Configurations>
-		<GenerateDocumentationFile>True</GenerateDocumentationFile>
-		<PackageReadmeFile>README.md</PackageReadmeFile>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<DebugType>embedded</DebugType>
-		<DebugSymbols>true</DebugSymbols>
-
-	</PropertyGroup>
-
-	<ItemGroup>
-		<None Include="..\ASCOMBoarderless.png">
-			<Pack>True</Pack>
-			<PackagePath></PackagePath>
-		</None>
-		<None Include="README.md" Pack="true" PackagePath="\" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<PackageReference Include="ASCOM.Exception.Library" Version="7.0.0" />
-		<PackageReference Include="System.Text.Json" Version="8.0.4" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<ProjectReference Include="..\ASCOM.Common\ASCOM.Common.csproj" />
-	</ItemGroup>
-
+    <Copyright>Copyright ASCOM Initiative 2022</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageIcon>ASCOMBoarderless.png</PackageIcon>
+    <PackageReleaseNotes>Initial release supporting all device types except Video and targeting .NET Standard 2.0.</PackageReleaseNotes>
+    <PackageId>ASCOM.Alpaca.Components</PackageId>
+    <RepositoryUrl>https://www.myget.org/F/ascom-initiative/api/v3/index.json</RepositoryUrl>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\ASCOM.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>false</DelaySign>
+    <Configurations>Debug;Release</Configurations>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PlatformTarget>x64</PlatformTarget>
+    <Platforms>AnyCPU;x64</Platforms>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>embedded</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <DebugType>embedded</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="..\ASCOMBoarderless.png">
+      <Pack>True</Pack>
+      <PackagePath>
+      </PackagePath>
+    </None>
+    <None Include="README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ASCOM.Common\ASCOM.Common.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="ASCOM.Exceptions">
+      <HintPath>..\..\ASCOM.Exceptions\bin\Release\net6.0\ASCOM.Exceptions.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 </Project>

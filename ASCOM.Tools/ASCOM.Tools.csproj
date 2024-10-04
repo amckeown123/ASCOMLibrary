@@ -1,50 +1,49 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
-	<PropertyGroup>
-		<TargetFramework>netstandard2.0</TargetFramework>
-		<AssemblyOriginatorKeyFile>..\ASCOM.snk</AssemblyOriginatorKeyFile>
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<SignAssembly>true</SignAssembly>
-		<PackageId>ASCOM.Tools</PackageId>
-		<Authors>Daniel Van Noord and Peter Simpson</Authors>
-		<Description>A set of components to support development of ASCOM clients, drivers and Alpaca devices.
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <AssemblyOriginatorKeyFile>..\ASCOM.snk</AssemblyOriginatorKeyFile>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <SignAssembly>true</SignAssembly>
+    <PackageId>ASCOM.Tools</PackageId>
+    <Authors>Daniel Van Noord and Peter Simpson</Authors>
+    <Description>A set of components to support development of ASCOM clients, drivers and Alpaca devices.
 
 Includes support for the interface updates introduced in ASCOM Platform 7.</Description>
-		<Copyright>ASCOM Initiative (c) 2022</Copyright>
-		<PackageIcon>ASCOMBoarderless.png</PackageIcon>
-		<Configurations>Debug;Release</Configurations>
-		<GenerateDocumentationFile>True</GenerateDocumentationFile>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageReadmeFile>README.md</PackageReadmeFile>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<DebugType>embedded</DebugType>
-	</PropertyGroup>
-
-	<ItemGroup>
-		<Compile Remove="NameSpaceDoc.cs" />
-	</ItemGroup>
-	<ItemGroup>
-		<None Include="..\ASCOMBoarderless.png">
-			<Pack>True</Pack>
-			<PackagePath>\</PackagePath>
-		</None>
-	</ItemGroup>
-
-	<ItemGroup>
-		<ProjectReference Include="..\ASCOM.Common\ASCOM.Common.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<None Include="README.md">
-			<Pack>True</Pack>
-			<PackagePath>\</PackagePath>
-		</None>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <PackageReference Include="Microsoft.Win32.Registry" Version="5.0.0" />
-	</ItemGroup>
-
+    <Copyright>ASCOM Initiative (c) 2022</Copyright>
+    <PackageIcon>ASCOMBoarderless.png</PackageIcon>
+    <Configurations>Debug;Release</Configurations>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <Platforms>AnyCPU;x64</Platforms>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="NameSpaceDoc.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\ASCOMBoarderless.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ASCOM.Common\ASCOM.Common.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="ASCOM.Exceptions">
+      <HintPath>..\..\ASCOM.Exceptions\bin\Release\net6.0\ASCOM.Exceptions.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 </Project>

@@ -1,11 +1,13 @@
-﻿using System;
+﻿
+
+using System;
 
 namespace ASCOM.Common.Alpaca
 {
     /// <summary>
     /// Alpaca boolean response class
     /// </summary>
-    public class DateTimeResponse : Response, IValueResponse<DateTime>
+    public class DateTimeResponse : Response, IValueResponse<System.DateTime>
     {
         private const string ISO8601_DATE_FORMAT_STRING = "yyyy-MM-ddTHH:mm:ss.fffffff";
 
@@ -48,14 +50,16 @@ namespace ASCOM.Common.Alpaca
         /// Boolean value returned by the device
         /// </summary>
         public DateTime Value { get; set; }
+        DateTime IValueResponse<DateTime>.Value { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+        
 
         /// <summary>
         /// Return the value as a string
         /// </summary>
         /// <returns>String representation of the response value</returns>
         public override string ToString()
-        {
-            if (Value == null) return "DateTime value is null";
+        { 
+          
             return Value.ToUniversalTime().ToString(ISO8601_DATE_FORMAT_STRING + "Z");
         }
     }

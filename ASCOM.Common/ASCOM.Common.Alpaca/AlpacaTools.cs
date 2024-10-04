@@ -4,13 +4,15 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using Xunit;
+using Object = System.Object;
 
 namespace ASCOM.Common.Alpaca
 {
     /// <summary>
     /// Repository of tools and constants specific to Alpaca implementation
     /// </summary>
-    public static class AlpacaTools
+    public static class AlpacaTools 
     {
         #region Constants
 
@@ -25,6 +27,8 @@ namespace ASCOM.Common.Alpaca
         /// Latest version number of the ImageBytes metadata array
         /// </summary>
         public const int ARRAY_METADATA_VERSION = 1;
+
+        public static object Serializer { get; private set; }
 
         #endregion
 
@@ -104,6 +108,11 @@ namespace ASCOM.Common.Alpaca
         /// data size for transmission. 
         /// All other element types are transmitted as supplied.
         /// </remarks>
+
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+
         public static byte[] ToByteArray(this Array imageArray, int metadataVersion, uint clientTransactionID, uint serverTransactionID, AlpacaErrors errorNumber, string errorMessage)
         {
             int transmissionElementSize; // Managed size of transmitted elements
@@ -748,8 +757,10 @@ namespace ASCOM.Common.Alpaca
                                         {
                                             for (int j = 0; j < imageArray.GetLength(1); j++)
                                             {
-                                                Array.Copy(BitConverter.GetBytes((Byte)imageArray.GetValue(i, j)), 0, imageArrayBytes, startOfNextElement, transmissionElementSize);
-                                                startOfNextElement += transmissionElementSize;
+
+                                                // Copies the first element from the int array to the Object array.
+                                                Array.Copy((Array)imageArray.GetValue(i, j), 0,  imageArrayBytes, startOfNextElement, transmissionElementSize);
+                                              
                                             }
                                         }
                                         break;
@@ -857,7 +868,9 @@ namespace ASCOM.Common.Alpaca
                                             {
                                                 for (int k = 0; k < imageArray.GetLength(2); k++)
                                                 {
-                                                    Array.Copy(BitConverter.GetBytes((Byte)imageArray.GetValue(i, j, k)), 0, imageArrayBytes, startOfNextElement, transmissionElementSize);
+                                                
+                                                    Array.Copy((Array)imageArray.GetValue(i, j), 0, imageArrayBytes, startOfNextElement, transmissionElementSize);
+                                                 
                                                     startOfNextElement += transmissionElementSize;
                                                 }
                                             }

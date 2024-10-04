@@ -1,16 +1,23 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
+        <TargetFramework>net6.0</TargetFramework>
 
         <IsPackable>false</IsPackable>
 
         <RootNamespace>ASCOM.Alpaca.Tests</RootNamespace>
 
         <Configurations>Debug;Release</Configurations>
+
+        <Platforms>AnyCPU;x64</Platforms>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+      <DebugType>portable</DebugType>
+      <DebugSymbols>true</DebugSymbols>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       <DebugType>portable</DebugType>
       <DebugSymbols>true</DebugSymbols>
     </PropertyGroup>
@@ -26,10 +33,9 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="ASCOM.Exception.Library" Version="7.0.0" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
         <PackageReference Include="System.Runtime.Extensions" Version="4.3.1" />
-        <PackageReference Include="xunit" Version="2.9.0" />
+        <PackageReference Include="xunit" Version="2.9.2" />
         <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2">
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -42,6 +48,12 @@
       <ProjectReference Include="..\..\ASCOM.Common\ASCOM.Common.csproj" />
       <ProjectReference Include="..\..\ASCOM.Com\ASCOM.Com.csproj" />
       <ProjectReference Include="..\..\ASCOM.Tools\ASCOM.Tools.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="ASCOM.Exceptions">
+        <HintPath>..\..\..\ASCOM.Exceptions\bin\Release\net6.0\ASCOM.Exceptions.dll</HintPath>
+      </Reference>
     </ItemGroup>
 
     <ItemGroup>
