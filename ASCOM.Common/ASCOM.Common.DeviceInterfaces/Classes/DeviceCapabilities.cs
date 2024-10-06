@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ASCOM.Common.Helpers;
+using System;
 
 namespace ASCOM.Common.DeviceInterfaces
 {

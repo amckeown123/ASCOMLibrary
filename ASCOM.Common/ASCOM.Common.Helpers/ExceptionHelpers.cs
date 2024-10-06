@@ -1,4 +1,5 @@
-﻿using ASCOM.Common.Alpaca;
+﻿
+using ASCOM.Common.Alpaca;
 using System;
 
 namespace ASCOM.Common.Helpers
@@ -8,6 +9,8 @@ namespace ASCOM.Common.Helpers
     /// </summary>
     public static class ExceptionHelpers
     {
+        public static object ErrorCodes { get; private set; }
+
         /// <summary>
         /// This extension gets an ASCOM driver exception from a response
         /// </summary>
@@ -15,7 +18,7 @@ namespace ASCOM.Common.Helpers
         /// <returns>Null if there is no exception, otherwise the ASCOM Exception for the error code</returns>
         public static DriverException Exception(this IResponse response)
         {
-            return ExceptionFromResponse(response);
+            return ExceptionFromResponse(response, new InvalidOperationException(response.ErrorMessage));
         }
 
         /// <summary>
@@ -23,9 +26,14 @@ namespace ASCOM.Common.Helpers
         /// </summary>
         /// <param name="response">The Alpaca response</param>
         /// <returns>Null if there is no exception, otherwise the ASCOM Exception for the error code</returns>
-        public static DriverException ExceptionFromResponse(IResponse response)
+        public static DriverException ExceptionFromResponse(IResponse response, InvalidOperationException invalidOperationException)
         {
-            return ExceptionFromErrorCode(response.ErrorNumber, response.ErrorMessage);
+            return ExceptionFromErrorCode(response.ErrorNumber, invalidOperationException, response.ErrorMessage);
+        }
+
+        private static DriverException ExceptionFromErrorCode(AlpacaErrors errorNumber, InvalidOperationException invalidOperationException, string errorMessage)
+        {
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -34,7 +42,7 @@ namespace ASCOM.Common.Helpers
         /// <param name="code">The Alpaca ErrorCode for the Exception</param>
         /// <param name="message">The optional message of the exception</param>
         /// <returns>Null if there is no exception, otherwise the ASCOM Exception for the error code</returns>
-        public static DriverException ExceptionFromErrorCode(AlpacaErrors code, string message = "")
+        public static DriverException ExceptionFromErrorCode(AlpacaErrors code, DriverException invalidOperationException, string message = "")
         {
             switch (code)
             {
@@ -49,7 +57,7 @@ namespace ASCOM.Common.Helpers
                 case AlpacaErrors.InvalidWhileSlaved:
                     return new SlavedException(message);
                 case AlpacaErrors.InvalidOperationException:
-                    return new InvalidOperationException(message);
+                    return invalidOperationException;
                 case AlpacaErrors.UnspecifiedError:
                     return new DriverException(message);
                 case AlpacaErrors.NotImplemented:

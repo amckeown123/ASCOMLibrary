@@ -1,4 +1,5 @@
-﻿using ASCOM.Common.Interfaces;
+﻿using ASCOM.Common.Helpers;
+using ASCOM.Common.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;

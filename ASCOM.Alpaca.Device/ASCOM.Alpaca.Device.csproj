@@ -42,4 +42,9 @@
   <ItemGroup>
     <ProjectReference Include="..\ASCOM.Common\ASCOM.Common.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Reference Include="ASCOM.Exceptions">
+      <HintPath>..\..\ASCOMPlatform\ASCOM.Exceptions\bin\Release\net6.0-windows10.0.26100.0\ASCOM.Exceptions.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 </Project>

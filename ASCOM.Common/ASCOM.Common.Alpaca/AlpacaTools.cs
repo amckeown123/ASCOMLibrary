@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ASCOM.Common.Helpers;
+using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -113,7 +114,7 @@ namespace ASCOM.Common.Alpaca
         [InlineData(true)]
         [InlineData(false)]
 
-        public static byte[] ToByteArray(this Array imageArray, int metadataVersion, uint clientTransactionID, uint serverTransactionID, AlpacaErrors errorNumber, string errorMessage)
+        public static byte[] ToByteArray(this Array imageArray, int metadataVersion, uint clientTransactionID, uint serverTransactionID, AlpacaErrors errorNumber, string errorMessage, Exception invalidValueException)
         {
             int transmissionElementSize; // Managed size of transmitted elements
             bool arrayIsByte; // Flag indicating whether the supplied array conforms to the Byte value range 0 to +255.
@@ -403,7 +404,7 @@ namespace ASCOM.Common.Alpaca
                             break;
 
                         default:
-                            throw new InvalidValueException($"ToByteArray - The camera returned an array of rank: {imageArray.Rank}, which is not supported.");
+                            throw invalidValueException;
                     }
 
 
